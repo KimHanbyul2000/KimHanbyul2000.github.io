@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>발표 제목 — Kim Hanbyul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    html, body { height: 100%; overflow: hidden; }
+
+    /* Slides */
+    #slides { width: 100%; height: 100vh; position: relative; }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 10vw 100px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .slide-content { max-width: 860px; width: 100%; }
+
+    /* Title slide */
+    .title-slide { text-align: center; }
+
+    .slide-label {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 24px;
+    }
+
+    .title-slide h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 32px;
+    }
+
+    .slide-author {
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .slide-venue {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* Content slide */
+    .slide-content h2 {
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .slide-content p {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    .slide-content ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .slide-content li {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--muted);
+      font-weight: 300;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .slide-content li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent-light);
+    }
+
+    /* Navigation bar */
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .nav-home {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+
+    .nav-home:hover { color: var(--accent-light); }
+
+    .nav-counter {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-arrows { display: flex; gap: 8px; }
+
+    .nav-arrows button {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .nav-arrows button:hover {
+      border-color: var(--accent);
+      color: var(--accent-light);
+    }
+
+    .nav-hint {
+      font-size: 11px;
+      color: var(--border);
+      letter-spacing: 0.03em;
+      user-select: none;
+    }
+
+    /* Progress bar */
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s;
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div id="slides">
+
+  <!-- ① 타이틀 슬라이드 -->
+  <section class="slide active">
+    <div class="slide-content title-slide">
+      <p class="slide-label">KIST TACO Lab</p>
+      <h1>발표 제목을<br>여기에 입력하세요</h1>
+      <p class="slide-author">김한별 · 2026-00-00</p>
+      <p class="slide-venue">학회명 / 행사명</p>
+    </div>
+  </section>
+
+  <!-- ② 내용 슬라이드 예시 -->
+  <section class="slide">
+    <div class="slide-content">
+      <h2>슬라이드 제목</h2>
+      <ul>
+        <li>첫 번째 항목 — 설명을 여기에 작성합니다.</li>
+        <li>두 번째 항목 — 설명을 여기에 작성합니다.</li>
+        <li>세 번째 항목 — 설명을 여기에 작성합니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ③ 텍스트 슬라이드 예시 -->
+  <section class="slide">
+    <div class="slide-content">
+      <h2>텍스트 슬라이드</h2>
+      <p>단락 형태의 내용을 작성할 때 사용합니다. 계산신경과학 연구 내용이나 실험 결과를 서술형으로 설명할 수 있습니다.</p>
+      <p>두 번째 단락입니다. 추가 설명을 여기에 작성합니다.</p>
+    </div>
+  </section>
+
+  <!-- 슬라이드 추가 시 위 패턴을 복사하세요 -->
+
+</div>
+
+<!-- 하단 네비게이션 -->
+<nav class="nav">
+  <a class="nav-home" href="../../">← KimHanbyul2000.github.io</a>
+  <span class="nav-counter"><span id="cur">1</span> / <span id="tot"></span></span>
+  <span class="nav-hint">← → 이동 &nbsp;·&nbsp; F 전체화면</span>
+  <div class="nav-arrows">
+    <button onclick="prev()" title="이전 (←)">←</button>
+    <button onclick="next()" title="다음 (→)">→</button>
+    <button onclick="toggleFs()" title="전체화면 (F)">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M1 4V1h3M9 1h3v3M12 9v3H9M4 12H1V9"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let cur = 0;
+
+  document.getElementById('tot').textContent = total;
+
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + total) % total;
+    slides[cur].classList.add('active');
+    document.getElementById('cur').textContent = cur + 1;
+    document.getElementById('progress').style.width = ((cur + 1) / total * 100) + '%';
+  }
+
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+
+  function toggleFs() {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  }
+
+  // 키보드
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+    if (e.key === 'f' || e.key === 'F') toggleFs();
+  });
+
+  // 터치 스와이프
+  let touchX = 0;
+  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+  });
+
+  // 슬라이드 클릭으로 전진
+  document.getElementById('slides').addEventListener('click', next);
+
+  show(0);
+</script>
+
+</body>
+</html>
