@@ -117,6 +117,28 @@
       margin-top: 2px;
     }
 
+    .card-private {
+      cursor: default;
+      opacity: 0.5;
+    }
+
+    .card-private:hover {
+      background: transparent;
+      border-color: transparent;
+    }
+
+    .tag-private {
+      font-size: 11px;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      margin-left: 16px;
+      margin-top: 2px;
+    }
+
     /* Tags */
     .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
 
@@ -162,13 +184,13 @@
   <section>
     <p class="section-title">Research</p>
     <div class="card-list">
-      <a class="card" href="https://github.com/KimHanbyul2000/cerebellar-pattern-separation">
+      <div class="card card-private">
         <div class="card-left">
           <div class="card-name">cerebellar-pattern-separation</div>
           <div class="card-desc">소뇌 패턴분리 원리 규명 및 계산 모델 모사 — TACO Lab</div>
         </div>
-        <span class="card-tag">Python</span>
-      </a>
+        <span class="tag-private">🔒 Private</span>
+      </div>
     </div>
   </section>
 
