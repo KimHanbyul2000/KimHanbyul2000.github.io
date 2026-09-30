@@ -10,6 +10,29 @@
   --accent-light: #818cf8;
 }
 
+/* 라이트 테마 — OS 가 라이트이고 방문자가 다크를 고르지 않았을 때, 또는 라이트를 골랐을 때.
+   선택은 localStorage "theme" 에 저장되며 같은 도메인의 /CV_Portfolio/ 와 공유된다. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #ffffff;
+    --surface: #f4f5f9;
+    --border: #e2e5ee;
+    --text: #141824;
+    --muted: #5b6477;
+    --accent: #4f46e5;
+    --accent-light: #4f46e5;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f4f5f9;
+  --border: #e2e5ee;
+  --text: #141824;
+  --muted: #5b6477;
+  --accent: #4f46e5;
+  --accent-light: #4f46e5;
+}
+
 html { scroll-behavior: smooth; }
 
 ::selection {
