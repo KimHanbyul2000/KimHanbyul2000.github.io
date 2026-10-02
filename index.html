@@ -160,6 +160,8 @@
       opacity: 0.5;
     }
 
+    .card-static { cursor: default; }
+
     .card-private:hover {
       background: transparent;
       border-color: transparent;
@@ -215,6 +217,10 @@
       border-top: 1px solid var(--border);
       font-size: 12px;
       color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
     }
   </style>
 </head>
@@ -242,6 +248,13 @@
         </div>
         <span class="tag-private">🔒 Private</span>
       </div>
+      <div class="card card-static">
+        <div class="card-left">
+          <div class="card-name">소뇌모사 반도체 원천기술 개발</div>
+          <div class="card-desc">피지컬 AI 시스템의 실시간 예측제어를 위한 비휘발성 메모리 통합 소뇌모사 반도체 — 국가 R&amp;D 참여연구원 · 2026.05 – 2026.12</div>
+        </div>
+        <span class="card-tag">국가 R&amp;D</span>
+      </div>
     </div>
   </section>
 
@@ -264,6 +277,13 @@
   <section>
     <p class="section-title">Projects</p>
     <div class="card-list">
+      <a class="card" href="https://github.com/KimHanbyul2000/ai-research-harness">
+        <div class="card-left">
+          <div class="card-name">ai-research-harness</div>
+          <div class="card-desc">연구자가 주도권을 유지하는 AI 작업 골격 — 포맷별 역할 · 용어 장부 · 승인 게이트 · 오답노트</div>
+        </div>
+        <span class="card-tag">Markdown / HTML</span>
+      </a>
       <a class="card" href="https://github.com/KimHanbyul2000/brain-cdss-daejeon">
         <div class="card-left">
           <div class="card-name">brain-cdss-daejeon</div>
@@ -292,13 +312,15 @@
     <p class="section-title">Links</p>
     <div class="link-list">
       <a class="ext-link" href="https://github.com/KimHanbyul2000">GitHub</a>
+      <a class="ext-link" href="CV_Portfolio/">Portfolio</a>
       <a class="ext-link" href="https://taco-lab.net">TACO Lab</a>
       <a class="ext-link" href="mailto:rlagksquf1208@gmail.com">Email</a>
     </div>
   </section>
 
   <footer>
-    Kim Hanbyul · KIST TACO Lab
+    <span>Kim Hanbyul · KIST TACO Lab</span>
+    <span>마지막 업데이트: <time datetime="2026-10-02">2026-10-02</time></span>
   </footer>
 
 </div>
