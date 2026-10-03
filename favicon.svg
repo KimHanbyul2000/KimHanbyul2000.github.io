@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- 활동전위(스파이크) 파형: 기저선 → 탈분극 → 과분극 → 회복 -->
+  <rect width="32" height="32" rx="7" fill="#4f46e5"/>
+  <path d="M4 20H11L14 5L17.5 24Q19.5 21.5 22.5 20H28" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

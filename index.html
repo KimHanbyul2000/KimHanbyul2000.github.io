@@ -14,12 +14,17 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script>
-    // 저장된 테마를 그리기 전에 적용한다(깜빡임 방지). 저장이 막혀 있어도 OS 설정으로 동작한다.
-    try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    // 저장된 테마·언어를 그리기 전에 적용한다(깜빡임 방지). 저장이 막혀 있어도 기본값으로 동작한다.
+    // 두 값 모두 같은 도메인의 /CV_Portfolio/ 와 공유된다.
+    try {
+      var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t;
+      var l = localStorage.getItem("lang"); if (l) document.documentElement.dataset.lang = l;
+    } catch (e) {}
   </script>
   <style>
     body { min-height: 100vh; }
@@ -78,13 +83,23 @@
     }
 
     .btn-portfolio:hover { background: var(--surface); }
-    .btn-portfolio span { color: var(--accent-light); }
+    .btn-portfolio .arrow { color: var(--accent-light); }
 
-    /* Theme toggle */
-    .theme-toggle {
+    /* 언어: 문구는 lang="ko"/"en" 쌍으로 두고 선택되지 않은 쪽을 숨긴다 */
+    :root:not([data-lang="en"]) body [lang="en"] { display: none !important; }
+    :root[data-lang="en"] body [lang="ko"] { display: none !important; }
+
+    /* Theme / language toggle */
+    .toolbar {
       position: fixed;
       top: 16px;
       right: 16px;
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+
+    .theme-toggle {
       appearance: none;
       border: 1px solid var(--border);
       background: var(--surface);
@@ -94,7 +109,6 @@
       font: inherit;
       font-size: 13px;
       cursor: pointer;
-      z-index: 10;
     }
 
     /* Section */
@@ -160,6 +174,8 @@
       opacity: 0.5;
     }
 
+    .card-static { cursor: default; }
+
     .card-private:hover {
       background: transparent;
       border-color: transparent;
@@ -215,20 +231,28 @@
       border-top: 1px solid var(--border);
       font-size: 12px;
       color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
     }
   </style>
 </head>
 <body>
-<button class="theme-toggle" id="theme" type="button" aria-label="테마 전환 (라이트 / 다크)">◐</button>
+<div class="toolbar">
+  <button class="theme-toggle" id="lang" type="button" aria-label="언어 전환 / Switch language">EN</button>
+  <button class="theme-toggle" id="theme" type="button" aria-label="테마 전환 (라이트 / 다크)">◐</button>
+</div>
 <div class="container">
 
   <div class="hero">
     <p class="hero-label">Neuromorphic · Spiking Neural Networks</p>
     <h1>Kim Hanbyul<br>김한별</h1>
-    <p>KIST TACO Lab · 소뇌 회로를 스파이킹 신경망(SNN)으로 모델링하고, 뉴로모픽 하드웨어로 이어지는 연산 원리를 연구합니다.</p>
+    <p lang="ko">KIST TACO Lab 인턴 연구원 · 소뇌 회로를 스파이킹 신경망(SNN)으로 모델링하고, 뉴로모픽 하드웨어로 이어지는 연산 원리를 연구합니다. 국가 R&amp;D 소뇌모사 반도체 과제의 참여연구원입니다.</p>
+    <p lang="en">Research Intern at KIST TACO Lab · I model cerebellar circuits as spiking neural networks (SNNs) and study the computational principles that carry over to neuromorphic hardware. Participating researcher in a national R&amp;D project on cerebellum-inspired semiconductors.</p>
     <div class="hero-actions">
-      <a class="btn-portfolio" href="CV_Portfolio/">커리어 포트폴리오 — 바이오메디컬 × 반도체 × 의료 AI → 뉴로모픽 <span>→</span></a>
-      <a class="btn-portfolio" href="ai-research-harness/">ai-research-harness — 연구자가 주도권을 유지하는 AI 작업 골격 <span>→</span></a>
+      <a class="btn-portfolio" href="CV_Portfolio/"><span lang="ko">커리어 포트폴리오 — 바이오메디컬 × 반도체 × 의료 AI → 뉴로모픽</span><span lang="en">Career portfolio — Biomedical × Semiconductor × Medical AI → Neuromorphic</span> <span class="arrow">→</span></a>
+      <a class="btn-portfolio" href="ai-research-harness/"><span lang="ko">ai-research-harness — 연구자가 주도권을 유지하는 AI 작업 골격</span><span lang="en">ai-research-harness — an AI workflow scaffold that keeps the researcher in charge</span> <span class="arrow">→</span></a>
     </div>
   </div>
 
@@ -238,9 +262,16 @@
       <div class="card card-private">
         <div class="card-left">
           <div class="card-name">cerebellar-pattern-separation</div>
-          <div class="card-desc">소뇌 패턴분리 원리 규명 및 계산 모델 모사 — TACO Lab</div>
+          <div class="card-desc"><span lang="ko">소뇌 패턴분리 원리 규명 및 계산 모델 모사</span><span lang="en">Uncovering cerebellar pattern separation and reproducing it in computational models</span> — TACO Lab</div>
         </div>
         <span class="tag-private">🔒 Private</span>
+      </div>
+      <div class="card card-static">
+        <div class="card-left">
+          <div class="card-name"><span lang="ko">소뇌모사 반도체 원천기술 개발</span><span lang="en">Cerebellum-inspired semiconductor technology</span></div>
+          <div class="card-desc"><span lang="ko">피지컬 AI 시스템의 실시간 예측제어를 위한 비휘발성 메모리 통합 소뇌모사 반도체 — 국가 R&amp;D 참여연구원 · 2026.05 – 2026.12</span><span lang="en">Cerebellum-inspired semiconductors integrated with non-volatile memory for real-time predictive control of physical AI systems — participating researcher, national R&amp;D · May – Dec 2026</span></div>
+        </div>
+        <span class="card-tag"><span lang="ko">국가 R&amp;D</span><span lang="en">National R&amp;D</span></span>
       </div>
     </div>
   </section>
@@ -257,17 +288,24 @@
         <span class="card-tag">학회</span>
       </a>
       -->
-      <p class="slides-empty">발표자료가 곧 추가됩니다.</p>
+      <p class="slides-empty"><span lang="ko">발표자료가 곧 추가됩니다.</span><span lang="en">Slides coming soon.</span></p>
     </div>
   </section>
 
   <section>
     <p class="section-title">Projects</p>
     <div class="card-list">
+      <a class="card" href="https://github.com/KimHanbyul2000/ai-research-harness">
+        <div class="card-left">
+          <div class="card-name">ai-research-harness</div>
+          <div class="card-desc"><span lang="ko">연구자가 주도권을 유지하는 AI 작업 골격 — 포맷별 역할 · 용어 장부 · 승인 게이트 · 오답노트</span><span lang="en">An AI workflow scaffold that keeps the researcher in charge — format roles · glossary · approval gates · error log</span></div>
+        </div>
+        <span class="card-tag">Markdown / HTML</span>
+      </a>
       <a class="card" href="https://github.com/KimHanbyul2000/brain-cdss-daejeon">
         <div class="card-left">
           <div class="card-name">brain-cdss-daejeon</div>
-          <div class="card-desc">뇌 임상 의사결정 지원 시스템 — Brain CDSS</div>
+          <div class="card-desc"><span lang="ko">뇌 임상 의사결정 지원 시스템</span><span lang="en">Brain clinical decision support system</span> — Brain CDSS</div>
         </div>
         <span class="card-tag">Django / JS</span>
       </a>
@@ -282,8 +320,9 @@
       <span class="tag">Computational Neuroscience</span>
       <span class="tag">Cerebellum</span>
       <span class="tag">Basal Ganglia</span>
-      <span class="tag">Rehabilitation Medicine</span>
-      <span class="tag">Data Analysis</span>
+      <span class="tag">Synaptic Plasticity</span>
+      <span class="tag">Neuromodulation</span>
+      <span class="tag">Brian2 / NEURON</span>
       <span class="tag">Python</span>
     </div>
   </section>
@@ -292,13 +331,15 @@
     <p class="section-title">Links</p>
     <div class="link-list">
       <a class="ext-link" href="https://github.com/KimHanbyul2000">GitHub</a>
+      <a class="ext-link" href="CV_Portfolio/">Portfolio</a>
       <a class="ext-link" href="https://taco-lab.net">TACO Lab</a>
       <a class="ext-link" href="mailto:rlagksquf1208@gmail.com">Email</a>
     </div>
   </section>
 
   <footer>
-    Kim Hanbyul · KIST TACO Lab
+    <span>Kim Hanbyul · KIST TACO Lab</span>
+    <span><span lang="ko">마지막 업데이트</span><span lang="en">Last updated</span>: <time id="updated" datetime="2026-10-02">2026-10-02</time></span>
   </footer>
 
 </div>
@@ -310,6 +351,32 @@
     root.dataset.theme = now === "dark" ? "light" : "dark";
     try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
   };
+
+  // 언어 전환: 기본은 한국어. 버튼에는 바꿀 언어를 표시한다
+  var langBtn = document.getElementById("lang");
+  function showLang() {
+    var en = document.documentElement.dataset.lang === "en";
+    langBtn.textContent = en ? "KO" : "EN";
+    document.documentElement.lang = en ? "en" : "ko";
+  }
+  langBtn.onclick = function () {
+    var root = document.documentElement;
+    root.dataset.lang = root.dataset.lang === "en" ? "ko" : "en";
+    try { localStorage.setItem("lang", root.dataset.lang); } catch (e) {}
+    showLang();
+  };
+  showLang();
+
+  // 마지막 업데이트: 기본 브랜치의 최신 커밋 날짜(KST)로 바꾼다. 실패하면 적어 둔 날짜를 그대로 둔다
+  fetch("https://api.github.com/repos/KimHanbyul2000/KimHanbyul2000.github.io/commits?per_page=1")
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+    .then(function (c) {
+      var d = new Date(c[0].commit.committer.date).toLocaleDateString("sv-SE", { timeZone: "Asia/Seoul" });
+      var el = document.getElementById("updated");
+      el.textContent = d;
+      el.setAttribute("datetime", d);
+    })
+    .catch(function () {});
 </script>
 </body>
 </html>
